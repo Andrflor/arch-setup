@@ -26,9 +26,6 @@ ufw enable
 # Configure Keyboardlayout
 localectl set-x11-keymap fr
 
-# Remove installation files
-rm -R /arch-setup/
-
 # Enable auto login on tty1
 mkdir -p /etc/systemd/system/getty@tty1.service.d/
 echo "[Service]" > /etc/systemd/system/getty@tty1.service.d/override.conf
