@@ -7,13 +7,13 @@ echo "Pre-Installation"
 timedatectl set-ntp true
 
 # Partition the disks
-parted -s /dev/sdb mklabel gpt
+parted /dev/sdb mklabel gpt
 echo "mkpart ESP fat32 0% 200MiB
 set 1 boot on
-mkpart primary linux-swap 200MiB 4GiBw
+mkpart primary linux-swap 200MiB 4GiB
 mkpart primary ext4 4GiB 100%
 quit
-" | parted -s /dev/sdb
+" | parted /dev/sdb
 
 # Set up encryption with dm-crypt and LUKS
 cryptsetup luksFormat -c aes-xts-plain64 -s 512 -h sha512 -y /dev/sdb3
