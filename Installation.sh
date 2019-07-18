@@ -40,7 +40,7 @@ pacman -S --noconfirm intel-ucode
 
 # Install and configure the Bootloader
 bootctl install
-ROOT="$(find -L /dev/disk/by-partuuid -samefile /dev/sda3 | cut -d/ -f5)"
+ROOT="$(find -L /dev/disk/by-partuuid -samefile /dev/sdb3 | cut -d/ -f5)"
 echo "title Arch Linux" > /boot/loader/entries/arch.conf
 echo "linux /vmlinuz-linux" >> /boot/loader/entries/arch.conf
 echo "initrd /intel-ucode.img" >> /boot/loader/entries/arch.conf
