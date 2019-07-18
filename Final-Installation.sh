@@ -39,7 +39,9 @@ echo "ExecStart=-/usr/bin/agetty --autologin $USR --noclear %I \$TERM" >> /etc/s
 passwd -l root
 
 # Finish Installation
-read -p "Finish!!! Press enter to reboot..."
+echo "Finish!! You can remove /arch-setup/ to cleanup"
+echo "Or you can install bloatwares /arch-setup/Bloat-Ware.sh"
+read -p "First reboot is needed !! Press enter to reboot..."
 
 # Pipe all output into log file
 } |& tee -a /home/$USR/Arch-Installation.log
