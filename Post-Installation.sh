@@ -18,7 +18,7 @@ pacman -S --noconfirm linux-headers linux-lts-headers
 pacman -S --noconfirm acpid ntp cronie avahi nss-mdns dbus cups ufw tlp
 
 # Configure the network
-pacman -S --noconfirm dialog dhclient 
+pacman -S --noconfirm dialog dhclient
 pacman -S --noconfirm networkmanager network-manager-applet
 
 # Install command line and ncurses programs
@@ -28,7 +28,6 @@ pacman -S --noconfirm smbclient
 pacman -S --noconfirm tree
 pacman -S --noconfirm atool
 pacman -S --noconfirm ranger w3m mpv
-pacman -S --noconfirm pulseaudio pulseaudio-alsa
 pacman -S --noconfirm htop
 pacman -S --noconfirm tmux
 pacman -S --noconfirm youtube-dl
@@ -64,20 +63,16 @@ pacman -S --noconfirm arc-gtk-theme hicolor-icon-theme papirus-icon-theme
 
 # Install graphical programs
 pacman -S --noconfirm rxvt-unicode
+
 pacman -S --noconfirm dunst
-pacman -S --noconfirm pavucontrol
 pacman -S --noconfirm qemu
 pacman -S --noconfirm docker docker-compose
+pacman -S --noconfirm fuse-exfat exfat-utils
+pacman -S --noconfirm dnsmasq
+pacman -S --noconfirm urxvt-perls
 
 # Add user to docker group
 gpasswd -a $userName docker
-
-# Add user to VirtualBox group
-gpasswd -a $userName vboxusers
-
-# Samba config
-mkdir /etc/samba
-touch /etc/samba/smb.conf
 
 # Avahi provides local hostname resolution using a "hostname.local" naming scheme
 sed -i '/hosts:/s/mymachines/mymachines mdns_minimal [NOTFOUND=return]/' /etc/nsswitch.conf
@@ -108,24 +103,3 @@ rm /home/$userName/.bin/Rsync.cpp
 # Change premissions
 chown -R $userName:$userName /home/$userName/
 chmod -R 700 /home/$userName/.bin/
-
-# Install Yay
-wget "https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz" -O - | tar xz -C /tmp
-chown -R $userName:$userName /tmp/yay/
-sudo -u $userName bash -c 'cd /tmp/yay && makepkg -s'
-pacman -U --noconfirm /tmp/yay/yay*.pkg.tar.xz
-
-# Install Polybar
-pacman -S --noconfirm jsoncpp libuv rhash cmake
-wget "https://aur.archlinux.org/cgit/aur.git/snapshot/polybar.tar.gz" -O - | tar xz -C /tmp
-chown -R $userName:$userName /tmp/polybar/
-sudo -u $userName bash -c 'cd /tmp/polybar && makepkg -s'
-pacman -U --noconfirm /tmp/polybar/polybar*.pkg.tar.xz
-
-# Add blackarch to the PPA
-curl -O https://blackarch.org/strap.sh
-chmod +x strap.sh
-./strap.sh
-
-# Clean up and optimize pacman
-pacman -Sc --noconfirm && pacman-optimize

@@ -1,0 +1,142 @@
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} focused:'^{1-9,10}'
+
+# Switch focus or current desktop to that monitor
+super + {_, shift + } {Left,Right,Up,Down}
+	bspc {monitor -f, desktop -m} '{west,east,north,south}'
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill sxhkd && sxhkd
+
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+# Layouts
+super + {d,f,s}
+	bspc node -t {fullscreen,floating,tiled}
+
+# Node swap
+super + {_,shift +} {h,j,k,l}
+	bspc node {-f,-s} {west,south,north,east}
+
+# focus the node for the given path jump
+super + {p,b,comma,period}
+    bspc node -f @{parent,brother,first,second}
+
+# Resize
+## expand the tiled space in the given direction
+super + alt + {h,j,k,l}
+	bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10}
+
+## Close the window
+super + shift + q
+    bspc node -c
+
+super + shift + d
+    xrandr --output HDMI2 --mode 1920x1080 --output eDP1 --mode 1920x1080 --pos 1920x0 --output DP1 --mode 1920x1080 --pos 3840x0 &
+
+# restart bspwm
+super + shift + r
+	bspc wm -r
+
+## contract the tiled space in the given direction
+super + alt + shift + {h,j,k,l}
+	bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}
+
+# Empty Node
+# insert receptacle, or clear receptacles on current desktop
+super + {_,shift + }space
+    insert={true,false}; \
+    $insert && bspc node -i || \
+    for win in `bspc query -m focused -N -n .leaf.!window`; do bspc node $win -k ; done;
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+super + shift + Return
+    urxvt -e vim
+
+super + shift + w
+    urxvt -e vim -S ~/.vim/vim.vim
+
+# hide window
+super + v
+  bspc node -g hidden
+
+# unhide window
+super + shift + v
+  bspc node {,$(bspc query -N -n .hidden | tail -n1)} -g hidden=off
+
+# Launch terminal emulator
+super + Return
+	urxvt -cd $(xcwd)
+
+# Launcher
+super + a
+	rofi -show drun -show-icons
+
+super + shift + e
+    urxvt -e vim -S ~/.vim/wm.vim
+
+super + r
+    urxvt -e /home/kensai/Hygia/run_pulse.sh -t floating
+
+# Functional key bindings
+XF86Audio{Stop,Prev,Next,Play}
+	mpc {stop,prev,next,toggle}
+
+XF86MonBrightness{Up,Down}
+	xbacklight {-inc 10,-dec 10}
+
+XF86Audio{Raise,Lower}Volume
+	amixer sset Master {5%+,5%-}
+
+XF86AudioMute
+	amixer sset Master toggle
+
+# Lock
+super + z
+    betterlockscreen --lock
+
+# Reload sxhkd
+super + shift + r
+	pkill -USR1 -x sxhkd
+
+Print
+    flameshot gui
+
+hyper + o
+    dbus-send --session --type=method_call --dest=fr.hygia.pulse.weight /fr/hygia/pulse/weight fr.hygia.pulse.weight.triggerPresence boolean:false
+
+hyper + i
+    dbus-send --session --type=method_call --dest=fr.hygia.pulse.weight /fr/hygia/pulse/weight fr.hygia.pulse.weight.triggerPresence boolean:true
+
+hyper + p
+    dbus-send --session --type=method_call --dest=fr.hygia.pulse.nibp /fr/hygia/pulse/nibp fr.hygia.pulse.nibp.getRealTimeCuffPressure
+
+hyper + u
+    pkill node && npm run dev:mock --prefix ~/Hygia/services/temperature & npm run dev:mock --prefix ~/Hygia/services/nibp & npm run dev:mock --prefix ~/Hygia/services/spo2 & npm run dev:mock --prefix ~/Hygia/services/weight
+
+hyper + space
+    firefox --new-window "https://duckduckgo.com/$(xclip -o)"
+
+hyper + Return
+    bspc rule -a URxvt -o split_dir="south" split_ratio="0.8" && urxvt -cd $(xcwd)
+
+super + hyper + Return
+    waterfox --new-window
+
+super + hyper + g
+    waterfox --new-window https://gitlab.eole-consulting.io

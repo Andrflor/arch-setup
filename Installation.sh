@@ -14,13 +14,11 @@ passwd
 ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
 
 # Set locales and generate them
-echo "LANG=fr_FR.UTF-8" > /etc/locale.conf
-echo "LANGUAGE=fr_FR" >> /etc/locale.conf
-echo "KEYMAP=fr" > /etc/vconsole.conf
+echo "LANG="en_US.UTF8 > /etc/locale.conf
+echo "LANGUAGE=fen_US" >> /etc/locale.conf
+echo "KEYMAP=us" > /etc/vconsole.conf
 echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 echo "en_US ISO-8859-1" >> /etc/locale.gen
-echo "fr_FR.UTF-8 UTF-8" >> /etc/locale.gen
-echo "fr_FR ISO-8859-1" >> /etc/locale.gen
 locale-gen
 
 # Fix pacman: Signature is unknown trust

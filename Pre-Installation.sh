@@ -31,10 +31,7 @@ mkdir /mnt/boot && mount /dev/sdb1 /mnt/boot
 
 # Select the mirrors
 pacman -Sy pacman-contrib
-cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
-wget -O - "https://www.archlinux.org/mirrorlist/?country=FR&protocol=https&ip_version=4&use_mirror_status=on" | sed 's/^#Server/Server/' > /etc/pacman.d/mirrorlist.tmp
-rankmirrors -n 10 /etc/pacman.d/mirrorlist.tmp > /etc/pacman.d/mirrorlist
-rm /etc/pacman.d/mirrorlist.tmp
+cp mirrorlist /etc/pacman.d/mirrorlist
 
 # Install the base packages
 pacstrap /mnt base base-devel

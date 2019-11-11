@@ -1,0 +1,26 @@
+{"value":true,"_id":"autoplay"}
+{"value":true,"_id":"autoplayPlaylists"}
+{"_id":"bounds","value":{"x":2,"y":2,"width":1916,"height":1076,"maximized":false}}
+{"value":false,"_id":"debugMode"}
+{"_id":"defaultProfile","value":"All Channels"}
+{"value":false,"_id":"distractionFreeMode"}
+{"value":false,"_id":"hideWatchedSubs"}
+{"value":true,"_id":"history"}
+{"value":"https://invidio.us","_id":"invidious"}
+{"value":true,"_id":"localScrape"}
+{"value":false,"_id":"playNextVideo"}
+{"value":"dash","_id":"player"}
+{"value":[{"name":"All Channels","color":"#d50000"},{"name":"SysAdmin","color":"#304FFE"},{"name":"Hacking","color":"#AA00FF"},{"name":"Politics","color":"#FF6D00"},{"name":"Science","color":"#6200EA"},{"name":"Humor","color":"#C51162"},{"name":"D&D","color":"#DD2C00"},{"name":"Sport","color":"#64DD17"},{"name":"Gaming","color":"#FFD600"},{"name":"Medias","color":"#00B8D4"},{"name":"Society","color":"#00BFA5"},{"name":"Nature","color":"#00C853"},{"name":"Buisness","color":"#DD2C00"},{"name":"Programming","color":"#C51162"}],"_id":"profileList"}
+{"value":"SOCKS5://127.0.0.1:9050","_id":"proxy"}
+{"value":false,"_id":"proxyVideos"}
+{"value":"1080","_id":"quality"}
+{"value":"1","_id":"rate"}
+{"value":"US","_id":"region"}
+{"value":"subscriptions","_id":"startScreen"}
+{"value":false,"_id":"subtitles"}
+{"value":"dark","_id":"theme"}
+{"value":true,"_id":"updates"}
+{"value":false,"_id":"useTor"}
+{"value":"grid","_id":"videoView"}
+{"value":"1","_id":"volume"}
+{"_id":"bounds","value":{"x":2,"y":2,"width":1916,"height":1076,"maximized":false}}

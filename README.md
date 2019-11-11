@@ -2,15 +2,13 @@
 
 Arch linux automate setup with:
 - bspwm
-- polybar
 - plymouth
 - full disk encryption
 - without lvm
 - systemd boot
 - firewall
 - ssd & notebook optimized
-- bloatware separate
-- french locale, keymap and mirror
+- french locale and mirror, US keyboard and lang
 - auto-login
 
 # Prerequisites:
